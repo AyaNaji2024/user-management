@@ -26,17 +26,13 @@ jobs:
       - name: Setup Maven
         shell: powershell
         run: |
+          Invoke-WebRequest -Uri "https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.zip" -OutFile "maven.zip"
+          Expand-Archive -Path "maven.zip" -DestinationPath "$env:USERPROFILE\maven"
           echo "MAVEN_HOME=$env:USERPROFILE\maven\apache-maven-3.8.8" >> $env:GITHUB_ENV
           echo "$env:USERPROFILE\maven\apache-maven-3.8.8\bin" >> $env:GITHUB_PATH
-        #      - name: Setup Maven
-        #        shell: powershell
-        #        run: |
-        #          Invoke-WebRequest -Uri "https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.zip" -OutFile "maven.zip"
-        #          Expand-Archive -Path "maven.zip" -DestinationPath "$env:USERPROFILE\maven"
-        #          echo "MAVEN_HOME=$env:USERPROFILE\maven\apache-maven-3.8.8" >> $env:GITHUB_ENV
-        #          echo "$env:USERPROFILE\maven\apache-maven-3.8.8\bin" >> $env:GITHUB_PATH
+          
 
-        #      - name: Install Maven manually for macos runners
+       #      - name: Install Maven manually for macos runners
         #        run: |
         #          rm -rf $HOME/maven/apache-maven-3.8.8
         #          curl -O https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
